@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>POOKIEPIED</title>
+
+  <!-- Favicon: white dot -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='white'/></svg>" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body, html {
+      margin: 0; padding: 0;
+      height: 100%;
+      font-family: 'Cinzel', serif;
+      background: #fff;
+      color: #111;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+      user-select: none;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb {
+      background-color: rgba(17,17,17,0.15);
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(17,17,17,0.35);
+    }
+
+    #container {
+      scroll-snap-type: y mandatory;
+      height: 100vh;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+    }
+
+    section {
+      scroll-snap-align: start;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    section > div {
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeIn 0.8s ease 0.2s forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .quote {
+      font-size: 1.3rem;
+      font-weight: 400;
+      max-width: 600px;
+      line-height: 1.4;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .author {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #444;
+    }
+
+    .socials {
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+    }
+
+    .socials a {
+      text-decoration: none;
+      color: #111;
+      margin: 0 12px;
+      position: relative;
+    }
+
+    .socials a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 1.5px;
+      bottom: -4px;
+      left: 0;
+      background-color: #111;
+      transition: width 0.3s;
+    }
+
+    .socials a:hover { color: #666; }
+    .socials a:hover::after { width: 100%; }
+
+    .section-title {
+      font-weight: 700;
+      font-size: 1rem;
+      color: #444;
+      letter-spacing: 3px;
+      margin-bottom: 30px;
+    }
+
+    .portfolio-desc {
+      max-width: 600px;
+      font-weight: 400;
+      font-size: 1.15rem;
+      line-height: 2.2;
+      text-transform: none;
+      letter-spacing: normal;
+      color: #222;
+      margin-bottom: 10px;
+    }
+
+    .status {
+      font-size: 0.85rem;
+      color: #555;
+      letter-spacing: 2px;
+    }
+
+    form {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      max-width: 380px;
+      width: 100%;
+    }
+
+    input[type="email"] {
+      flex-grow: 1;
+      padding: 14px 12px;
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      border: none;
+      border-bottom: 2px solid #111;
+      background: transparent;
+      color: #111;
+      text-transform: none;
+    }
+
+    input[type="email"]::placeholder {
+      color: #999;
+      font-style: italic;
+    }
+
+    button {
+      border: 1.5px solid #111;
+      background: transparent;
+      color: #111;
+      padding: 12px 20px;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #111;
+      color: #fff;
+    }
+
+    nav.dot-nav {
+      position: fixed;
+      top: 50%;
+      right: 30px;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    nav.dot-nav a {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #111;
+      opacity: 0.3;
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    nav.dot-nav a.active {
+      opacity: 1;
+      transform: scale(1.3);
+    }
+
+    @media (max-width: 600px) {
+      .quote { font-size: 1.1rem; }
+      .socials { font-size: 0.8rem; }
+      form { flex-direction: column; }
+      button { width: 100%; padding: 12px 0; }
+      nav.dot-nav { right: 15px; }
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <section id="home">
+      <div>
+        <div class="quote">
+          “WAKARANAI” <span class="author">— pookiepied</span>
+        </div>
+        <div class="socials">
+          <a href="https://twitter.com/pookiepied" target="_blank">TWITTER</a> |
+          <a href="https://github.com/pookiepied" target="_blank">GITHUB</a> |
+          <a href="https://instagram.com/pookiepied" target="_blank">INSTAGRAM</a> |
+          <a href="https://youtube.com/@pookiepied" target="_blank">YOUTUBE</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio">
+      <div>
+        <div class="section-title">PORTFOLIO</div>
+        <p class="portfolio-desc">
+          <strong>EVANGEL - </strong>A DEEP NARRATIVE-DRIVEN HACK-AND-SLASH ACTION RPG BUILT WITH UNREAL ENGINE 5.
+        </p>
+        <div class="status">IN DEVELOPMENT</div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div>
+        <div class="section-title">CONTACT</div>
+        <form action="mailto:pookiepied@gmail.com" method="POST" enctype="text/plain" onsubmit="alert('This will open your email client.');">
+          <input type="email" name="email" placeholder="YOUR EMAIL" required>
+          <button type="submit">SEND</button>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <nav class="dot-nav" aria-label="Page navigation">
+    <a href="#home" class="active" aria-label="Home"></a>
+    <a href="#portfolio" aria-label="Portfolio"></a>
+    <a href="#contact" aria-label="Contact"></a>
+  </nav>
+
+  <script>
+    const container = document.getElementById('container');
+    const navLinks = document.querySelectorAll('.dot-nav a');
+    const sections = [...document.querySelectorAll('section')];
+
+    navLinks.forEach((link, i) => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        sections[i].scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    container.addEventListener('scroll', () => {
+      const scrollPos = container.scrollTop;
+      const height = container.clientHeight;
+      sections.forEach((section, i) => {
+        if (scrollPos >= section.offsetTop - height / 2 && scrollPos < section.offsetTop + height / 2) {
+          navLinks.forEach(link => link.classList.remove('active'));
+          navLinks[i].classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
