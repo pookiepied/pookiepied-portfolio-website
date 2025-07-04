@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>POOKIEPIED</title>
 
-  <!-- Favicon: white dot -->
+  
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='white'/></svg>" />
 
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet" />
@@ -130,7 +130,7 @@
       letter-spacing: 2px;
     }
 
-    /* Elegant Contact Form Styles */
+    
     .contact-form {
       max-width: 450px;
       width: 100%;
@@ -179,7 +179,7 @@
       letter-spacing: 1px;
     }
 
-    /* We will toggle this class via JS */
+    
     .form-label.floating {
       top: -8px;
       font-size: 0.8rem;
@@ -362,7 +362,7 @@
     const navLinks = document.querySelectorAll('.dot-nav a');
     const sections = [...document.querySelectorAll('section')];
 
-    // Navigation functionality
+    
     navLinks.forEach((link, i) => {
       link.addEventListener('click', e => {
         e.preventDefault();
@@ -381,7 +381,7 @@
       });
     });
 
-    // Elegant contact form functionality
+    
     const emailInput = document.querySelector('input[name="email"]');
     const emailLabel = emailInput.nextElementSibling;
     const messageTextarea = document.querySelector('textarea[name="message"]');
@@ -429,12 +429,12 @@
       validateForm();
     });
 
-    // Initialize labels on page load
+    
     updateLabel(emailInput, emailLabel);
     updateLabel(messageTextarea, messageLabel);
     validateForm();
 
-    // Form submission
+    
     contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
