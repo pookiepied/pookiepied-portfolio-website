@@ -475,6 +475,91 @@ nav.dot-nav a.active {
   transform: scale(1.3);
 }
 
+/* Projects container and slider */
+.projects-container {
+  width: 100%;
+  max-width: 700px;
+  position: relative;
+  padding: 20px 0;
+  overflow: hidden; /* Hide side cards */
+}
+
+.projects-slider {
+  display: flex;
+  transition: transform 0.5s ease;
+  cursor: grab;
+  width: 100%;
+}
+
+.projects-slider:active {
+  cursor: grabbing;
+}
+
+.projects-slider .project-card {
+  flex: 0 0 100%;
+  margin: 0;
+  box-sizing: border-box;
+  opacity: 0.3; /* Make non-active cards semi-transparent */
+  transition: opacity 0.5s ease;
+}
+
+/* Show only the active card */
+.projects-slider .project-card.active {
+  opacity: 1;
+}
+
+.projects-slider .project-card:not(.active) {
+  opacity: 0.3;
+}
+
+/* Project indicators (lines) */
+.project-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 30px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.project-indicators.visible {
+  opacity: 1;
+}
+
+.project-indicators .line {
+  width: 40px;
+  height: 2px;
+  background: #ddd;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-indicators .line.active {
+  background: #111;
+}
+
+.project-indicators .line:hover {
+  background: #666;
+}
+
+.project-indicators .line.active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
 /* Responsive */
 @media (max-width: 600px) {
   .quote {
@@ -512,5 +597,11 @@ nav.dot-nav a.active {
     flex-direction: column;
     gap: 15px;
     text-align: center;
+  }
+  .project-indicators {
+    gap: 10px;
+  }
+  .project-indicators .line {
+    width: 30px;
   }
 }

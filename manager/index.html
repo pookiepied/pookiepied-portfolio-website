@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>POOKIEPIED Portfolio Manager</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #333;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+      color: white;
+      padding: 30px;
+      text-align: center;
+      position: relative;
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    .header p {
+      opacity: 0.8;
+      font-size: 1.1rem;
+    }
+
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 30px;
+      background: #f8f9fa;
+      border-bottom: 1px solid #e9ecef;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-secondary {
+      background: #6c757d;
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background: #5a6268;
+      transform: translateY(-2px);
+    }
+
+    .btn-success {
+      background: #28a745;
+      color: white;
+    }
+
+    .btn-success:hover {
+      background: #218838;
+      transform: translateY(-2px);
+    }
+
+    .main-content {
+      display: flex;
+      min-height: 70vh;
+    }
+
+    .sidebar {
+      width: 300px;
+      background: #f8f9fa;
+      border-right: 1px solid #e9ecef;
+      padding: 20px;
+    }
+
+    .sidebar h3 {
+      margin-bottom: 20px;
+      color: #495057;
+      font-size: 1.2rem;
+    }
+
+    .project-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .project-item {
+      background: white;
+      border: 2px solid #e9ecef;
+      border-radius: 12px;
+      padding: 15px;
+      cursor: move;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .project-item:hover {
+      border-color: #667eea;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    .project-item.dragging {
+      opacity: 0.5;
+      transform: rotate(5deg);
+    }
+
+    .project-item.active {
+      border-color: #667eea;
+      background: #f8f9ff;
+    }
+
+    .project-title {
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: #2d3748;
+    }
+
+    .project-meta {
+      font-size: 0.9rem;
+      color: #6c757d;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .status-badge {
+      padding: 4px 8px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .status-development {
+      background: #d1ecf1;
+      color: #0c5460;
+    }
+
+    .status-completed {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .status-paused {
+      background: #f8d7da;
+      color: #721c24;
+    }
+
+    .workspace {
+      flex: 1;
+      padding: 30px;
+      background: #ffffff;
+    }
+
+    .workspace h2 {
+      margin-bottom: 30px;
+      color: #2d3748;
+      font-size: 1.8rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group.full-width {
+      grid-column: 1 / -1;
+    }
+
+    .form-label {
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #495057;
+    }
+
+    .form-input, .form-textarea, .form-select {
+      padding: 12px;
+      border: 2px solid #e9ecef;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-input:focus, .form-textarea:focus, .form-select:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+
+    .form-textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .tech-stack-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .tech-item {
+      background: #e9ecef;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tech-remove {
+      cursor: pointer;
+      color: #dc3545;
+      font-weight: bold;
+    }
+
+    .platforms-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .platform-checkbox {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px;
+      border: 2px solid #e9ecef;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .platform-checkbox:hover {
+      border-color: #667eea;
+    }
+
+    .platform-checkbox.selected {
+      border-color: #667eea;
+      background: #f8f9ff;
+    }
+
+    .progress-slider {
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .progress-display {
+      text-align: center;
+      margin-top: 10px;
+      font-weight: 600;
+      color: #667eea;
+    }
+
+    .preview-section {
+      margin-top: 30px;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 12px;
+    }
+
+    .preview-section h3 {
+      margin-bottom: 15px;
+      color: #495057;
+    }
+
+    .project-preview {
+      background: white;
+      border: 1px solid #e9ecef;
+      border-radius: 8px;
+      padding: 20px;
+      font-family: 'Cinzel', serif;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .add-project-btn {
+      width: 100%;
+      height: 60px;
+      border: 2px dashed #667eea;
+      background: transparent;
+      color: #667eea;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .add-project-btn:hover {
+      background: #667eea;
+      color: white;
+    }
+
+    .delete-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #dc3545;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      font-size: 12px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .project-item:hover .delete-btn {
+      opacity: 1;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      z-index: 1000;
+    }
+
+    .modal-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      max-width: 90%;
+      max-height: 90%;
+      overflow-y: auto;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+
+    .code-output {
+      background: #2d3748;
+      color: #e2e8f0;
+      padding: 20px;
+      border-radius: 8px;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      white-space: pre-wrap;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .copy-btn {
+      margin-top: 15px;
+      background: #667eea;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: #6c757d;
+    }
+
+    .empty-state h3 {
+      margin-bottom: 10px;
+      color: #495057;
+    }
+
+    @media (max-width: 768px) {
+      .main-content {
+        flex-direction: column;
+      }
+      
+      .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #e9ecef;
+      }
+      
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>POOKIEPIED</h1>
+      <p>Portfolio Project Manager</p>
+    </div>
+    
+    <div class="toolbar">
+      <div>
+        <button class="btn btn-primary" onclick="addNewProject()">
+          + Add New Project
+        </button>
+      </div>
+      <div>
+        <button class="btn btn-secondary" onclick="exportProjects()">
+          📄 Export HTML
+        </button>
+        <button class="btn btn-success" onclick="saveProjects()">
+          💾 Save Projects
+        </button>
+      </div>
+    </div>
+    
+    <div class="main-content">
+      <div class="sidebar">
+        <h3>Projects</h3>
+        <div class="project-list" id="projectList">
+          <!-- Projects will be added here -->
+        </div>
+        <button class="add-project-btn" onclick="addNewProject()">
+          + Add New Project
+        </button>
+      </div>
+      
+      <div class="workspace">
+        <div id="workspaceContent" class="empty-state">
+          <h3>Welcome to your Portfolio Manager!</h3>
+          <p>Add a new project to get started, or select an existing project to edit.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for code export -->
+  <div id="exportModal" class="modal">
+    <div class="modal-content">
+      <h2>Generated HTML Code</h2>
+      <p>Copy this code and replace the portfolio section in your HTML file:</p>
+      <div class="code-output" id="codeOutput"></div>
+      <button class="copy-btn" onclick="copyToClipboard()">Copy to Clipboard</button>
+      <button class="btn btn-secondary" onclick="closeModal()" style="margin-left: 10px;">Close</button>
+    </div>
+  </div>
+
+  <script>
+    let projects = [];
+    let currentProjectId = null;
+    let nextProjectId = 1;
+
+    // Initialize with sample project
+    projects = [{
+      id: 1,
+      title: 'EVANGEL',
+      year: '2025',
+      subtitle: 'NARRATIVE-DRIVEN JRPG WITH HACK-AND-SLASH COMBAT',
+      description: 'A character-driven JRPG about searching for meaning in a world that forgets, where each choice quietly shifts the path ahead.',
+      techStack: ['UNREAL ENGINE 5', 'BLUEPRINT', 'C++'],
+      status: 'development',
+      progress: 10,
+      platforms: ['Steam', 'Epic Games', 'PlayStation 5', 'Xbox']
+    }];
+    nextProjectId = 2;
+
+    const techStackOptions = [
+      'UNREAL ENGINE 5', 'UNITY', 'GODOT', 'BLUEPRINT', 'C++', 'C#', 'JAVASCRIPT', 
+      'PYTHON', 'REACT', 'NODEJS', 'BLENDER', 'PHOTOSHOP', 'SUBSTANCE PAINTER'
+    ];
+
+    const platformOptions = [
+      'Steam', 'Epic Games', 'PlayStation 5', 'Xbox', 'Nintendo Switch', 'iOS', 'Android', 'Web'
+    ];
+
+    function renderProjects() {
+      const projectList = document.getElementById('projectList');
+      projectList.innerHTML = '';
+      
+      projects.forEach(project => {
+        const projectItem = document.createElement('div');
+        projectItem.className = `project-item ${currentProjectId === project.id ? 'active' : ''}`;
+        projectItem.draggable = true;
+        projectItem.onclick = () => selectProject(project.id);
+        
+        const statusClass = project.status === 'development' ? 'status-development' : 
+                          project.status === 'completed' ? 'status-completed' : 'status-paused';
+        
+        projectItem.innerHTML = `
+          <button class="delete-btn" onclick="deleteProject(${project.id}, event)">×</button>
+          <div class="project-title">${project.title}</div>
+          <div class="project-meta">
+            <span>${project.year}</span>
+            <span class="status-badge ${statusClass}">${project.status.toUpperCase()}</span>
+          </div>
+        `;
+        
+        projectList.appendChild(projectItem);
+      });
+    }
+
+    function selectProject(projectId) {
+      currentProjectId = projectId;
+      const project = projects.find(p => p.id === projectId);
+      if (project) {
+        renderProjectEditor(project);
+        renderProjects();
+      }
+    }
+
+    function renderProjectEditor(project) {
+      const workspaceContent = document.getElementById('workspaceContent');
+      workspaceContent.className = '';
+      
+      workspaceContent.innerHTML = `
+        <h2>Edit Project</h2>
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">Project Title</label>
+            <input type="text" class="form-input" value="${project.title}" onchange="updateProject('title', this.value)">
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Year</label>
+            <input type="text" class="form-input" value="${project.year}" onchange="updateProject('year', this.value)">
+          </div>
+          
+          <div class="form-group full-width">
+            <label class="form-label">Subtitle</label>
+            <input type="text" class="form-input" value="${project.subtitle}" onchange="updateProject('subtitle', this.value)">
+          </div>
+          
+          <div class="form-group full-width">
+            <label class="form-label">Description</label>
+            <textarea class="form-textarea" onchange="updateProject('description', this.value)">${project.description}</textarea>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Status</label>
+            <select class="form-select" onchange="updateProject('status', this.value)">
+              <option value="development" ${project.status === 'development' ? 'selected' : ''}>In Development</option>
+              <option value="completed" ${project.status === 'completed' ? 'selected' : ''}>Completed</option>
+              <option value="paused" ${project.status === 'paused' ? 'selected' : ''}>Paused</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Progress</label>
+            <input type="range" class="progress-slider" min="0" max="100" value="${project.progress}" onchange="updateProject('progress', this.value)">
+            <div class="progress-display">${project.progress}%</div>
+          </div>
+          
+          <div class="form-group full-width">
+            <label class="form-label">Tech Stack</label>
+            <div class="tech-stack-container">
+              ${project.techStack.map(tech => `
+                <div class="tech-item">
+                  ${tech}
+                  <span class="tech-remove" onclick="removeTech('${tech}')">×</span>
+                </div>
+              `).join('')}
+            </div>
+            <select class="form-select" onchange="addTech(this.value)" style="margin-top: 10px;">
+              <option value="">Add Technology...</option>
+              ${techStackOptions.map(tech => `<option value="${tech}">${tech}</option>`).join('')}
+            </select>
+          </div>
+          
+          <div class="form-group full-width">
+            <label class="form-label">Platforms</label>
+            <div class="platforms-container">
+              ${platformOptions.map(platform => `
+                <div class="platform-checkbox ${project.platforms.includes(platform) ? 'selected' : ''}" 
+                     onclick="togglePlatform('${platform}')">
+                  <input type="checkbox" ${project.platforms.includes(platform) ? 'checked' : ''}>
+                  ${platform}
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+        
+        <div class="preview-section">
+          <h3>Live Preview</h3>
+          <div class="project-preview">
+            ${generateProjectHTML(project)}
+          </div>
+        </div>
+      `;
+    }
+
+    function addNewProject() {
+      const newProject = {
+        id: nextProjectId++,
+        title: 'New Project',
+        year: new Date().getFullYear().toString(),
+        subtitle: 'PROJECT SUBTITLE',
+        description: 'Project description goes here.',
+        techStack: [],
+        status: 'development',
+        progress: 0,
+        platforms: []
+      };
+      
+      projects.push(newProject);
+      selectProject(newProject.id);
+      renderProjects();
+    }
+
+    function deleteProject(projectId, event) {
+      event.stopPropagation();
+      if (confirm('Are you sure you want to delete this project?')) {
+        projects = projects.filter(p => p.id !== projectId);
+        if (currentProjectId === projectId) {
+          currentProjectId = null;
+          document.getElementById('workspaceContent').innerHTML = `
+            <div class="empty-state">
+              <h3>Project deleted</h3>
+              <p>Select another project to edit, or add a new one.</p>
+            </div>
+          `;
+        }
+        renderProjects();
+      }
+    }
+
+    function updateProject(field, value) {
+      const project = projects.find(p => p.id === currentProjectId);
+      if (project) {
+        project[field] = value;
+        renderProjects();
+        
+        // Update preview
+        const preview = document.querySelector('.project-preview');
+        if (preview) {
+          preview.innerHTML = generateProjectHTML(project);
+        }
+        
+        // Update progress display
+        if (field === 'progress') {
+          const display = document.querySelector('.progress-display');
+          if (display) {
+            display.textContent = value + '%';
+          }
+        }
+      }
+    }
+
+    function addTech(tech) {
+      if (tech && currentProjectId) {
+        const project = projects.find(p => p.id === currentProjectId);
+        if (project && !project.techStack.includes(tech)) {
+          project.techStack.push(tech);
+          renderProjectEditor(project);
+          renderProjects();
+        }
+      }
+    }
+
+    function removeTech(tech) {
+      const project = projects.find(p => p.id === currentProjectId);
+      if (project) {
+        project.techStack = project.techStack.filter(t => t !== tech);
+        renderProjectEditor(project);
+        renderProjects();
+      }
+    }
+
+    function togglePlatform(platform) {
+      const project = projects.find(p => p.id === currentProjectId);
+      if (project) {
+        if (project.platforms.includes(platform)) {
+          project.platforms = project.platforms.filter(p => p !== platform);
+        } else {
+          project.platforms.push(platform);
+        }
+        renderProjectEditor(project);
+        renderProjects();
+      }
+    }
+
+    function generateProjectHTML(project) {
+      const statusDot = project.status === 'development' ? '<div class="status-dot pulsing"></div>' : '<div class="status-dot"></div>';
+      
+      return `
+        <div class="project-header">
+          <h3 class="project-title">${project.title}</h3>
+          <div class="project-year">${project.year}</div>
+        </div>
+        
+        <div class="project-subtitle">${project.subtitle}</div>
+        
+        <div class="project-details">
+          <div class="tech-stack">
+            ${project.techStack.map(tech => `<span class="tech-item">${tech}</span>`).join('')}
+          </div>
+          
+          <div class="project-status">
+            <div class="status-indicator">
+              ${statusDot}
+              <span class="status-text">${project.status.toUpperCase()}</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: ${project.progress}%"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="project-description">
+          ${project.description}
+        </div>
+        
+        <div class="project-platforms">
+          <div class="platform-icons">
+            ${project.platforms.map(platform => `
+              <div class="platform-icon" title="${platform}">
+                <img src="assets/images/logos/${platform.toLowerCase().replace(' ', '-')}-logo.png" alt="${platform}">
+              </div>
+            `).join('')}
+          </div>
+          <div class="platform-text">PLANNED PLATFORMS</div>
+        </div>
+      `;
+    }
+
+    function exportProjects() {
+      const portfolioHTML = projects.map(project => `
+        <div class="project-card">
+          ${generateProjectHTML(project)}
+        </div>
+      `).join('\n\n');
+      
+      const fullHTML = `<section id="portfolio">
+      <div>
+        <div class="section-title">PORTFOLIO</div>
+        
+        ${portfolioHTML}
+      </div>
+    </section>`;
+      
+      document.getElementById('codeOutput').textContent = fullHTML;
+      document.getElementById('exportModal').style.display = 'block';
+    }
+
+    function copyToClipboard() {
+      const codeOutput = document.getElementById('codeOutput');
+      navigator.clipboard.writeText(codeOutput.textContent).then(() => {
+        alert('Code copied to clipboard!');
+      });
+    }
+
+    function closeModal() {
+      document.getElementById('exportModal').style.display = 'none';
+    }
+
+    function saveProjects() {
+      const projectsData = JSON.stringify(projects, null, 2);
+      const blob = new Blob([projectsData], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'portfolio-projects.json';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    // Initialize
+    renderProjects();
+    if (projects.length > 0) {
+      selectProject(projects[0].id);
+    }
+  </script>
+</body>
+</html>
