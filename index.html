@@ -2,30 +2,37 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>POOKIEPIED - Indie Game Developer</title>
 
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="POOKIEPIED - Indie Game Developer">
   <meta name="description" content="POOKIEPIED - Indie Game Developer creating EVANGEL, a narrative-driven hack-and-slash action RPG built with Unreal Engine 5. Portfolio and contact information.">
   <meta name="author" content="POOKIEPIED">
   <meta name="keywords" content="indie game developer, game development, EVANGEL, Unreal Engine 5, hack and slash, action RPG, narrative driven games">
   <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#ffffff">
   
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pookiepied.dev">
   <meta property="og:title" content="POOKIEPIED - Indie Game Developer">
   <meta property="og:description" content="Creating EVANGEL, a narrative-driven hack-and-slash action RPG built with Unreal Engine 5. Indie game developer portfolio.">
-  <meta property="og:url" content="https://pookiepied.dev">
-  <meta property="og:type" content="website">
   <meta property="og:image" content="https://pookiepied.dev/og-preview.png">
   <meta property="og:image:alt" content="POOKIEPIED - Indie Game Developer">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   
+  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:site" content="@pookiepied">
-  <meta name="twitter:creator" content="@pookiepied">
+  <meta name="twitter:url" content="https://pookiepied.dev">
   <meta name="twitter:title" content="POOKIEPIED - Indie Game Developer">
   <meta name="twitter:description" content="Creating EVANGEL, a narrative-driven hack-and-slash action RPG built with Unreal Engine 5.">
   <meta name="twitter:image" content="https://pookiepied.dev/og-preview.png">
+  <meta name="twitter:site" content="@pookiepied">
+  <meta name="twitter:creator" content="@pookiepied">
 
+  <!-- Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -43,157 +50,245 @@
   }
   </script>
 
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='white'/></svg>">
+  
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
-  <div id="container">
-    <section id="home">
+  <!-- Skip to main content for accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  
+  <!-- Main container -->
+  <div id="container" role="main">
+    <!-- Hero Section -->
+    <section id="home" aria-labelledby="hero-heading">
       <div>
-        <h1>POOKIEPIED - Indie Game Developer</h1>
+        <h1 id="hero-heading" class="sr-only">POOKIEPIED - Indie Game Developer</h1>
         
         <blockquote class="quote">
-          "WAKARANAI" <span class="author">— pookiepied</span>
+          <span>"WAKARANAI"</span>
+          <cite class="author">— pookiepied</cite>
         </blockquote>
 
         <nav class="socials" aria-label="Social media links">
-          <a href="https://twitter.com/pookiepied" target="_blank" rel="noopener">TWITTER</a> |
-          <a href="https://github.com/pookiepied" target="_blank" rel="noopener">GITHUB</a> |
-          <a href="https://instagram.com/pookiepied" target="_blank" rel="noopener">INSTAGRAM</a> |
-          <a href="https://youtube.com/@pookiepied" target="_blank" rel="noopener">YOUTUBE</a>
+          <a href="https://twitter.com/pookiepied" 
+             target="_blank" 
+             rel="noopener noreferrer"
+             aria-label="Follow on Twitter">TWITTER</a>
+          <span aria-hidden="true">|</span>
+          <a href="https://github.com/pookiepied" 
+             target="_blank" 
+             rel="noopener noreferrer"
+             aria-label="View GitHub profile">GITHUB</a>
+          <span aria-hidden="true">|</span>
+          <a href="https://instagram.com/pookiepied" 
+             target="_blank" 
+             rel="noopener noreferrer"
+             aria-label="Follow on Instagram">INSTAGRAM</a>
+          <span aria-hidden="true">|</span>
+          <a href="https://youtube.com/@pookiepied" 
+             target="_blank" 
+             rel="noopener noreferrer"
+             aria-label="Subscribe on YouTube">YOUTUBE</a>
         </nav>
       </div>
     </section>
-    <section id="portfolio">
-  <div>
-    <div class="section-title">PORTFOLIO</div>
-    
-    <div class="projects-container">
-      <div class="projects-slider">
-        <div class="project-card">
-          <div class="project-header">
-            <h3 class="project-title">EVANGEL</h3>
-            <div class="project-year">2025</div>
-          </div>
-          
-          <div class="project-subtitle">NARRATIVE-DRIVEN JRPG WITH HACK-AND-SLASH COMBAT</div>
-          
-          <div class="project-details">
-            <div class="tech-stack">
-              <span class="tech-item">UNREAL ENGINE 5</span>
-              <span class="tech-item">BLUEPRINT</span>
-              <span class="tech-item">C++</span>
-            </div>
-            
-            <div class="project-status">
-              <div class="status-indicator">
-                <div class="status-dot pulsing"></div>
-                <span class="status-text">IN DEVELOPMENT</span>
-              </div>
-              <div class="progress-bar">
-                <div class="progress-fill" style="width: 10%"></div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="project-description">
-            A character-driven JRPG about searching for meaning in a world that forgets, where each choice quietly shifts the path ahead.
-          </div>
-          
-          <div class="project-platforms">
-            <div class="platform-icons">
-              <div class="platform-icon" title="Steam">
-                <img src="assets/images/logos/steam-logo.png" alt="Steam">
-              </div>
-              <div class="platform-icon" title="Epic Games">
-                <img src="assets/images/logos/epic-games-logo.png" alt="Epic Games">
-              </div>
-              <div class="platform-icon" title="PlayStation 5">
-                <img src="assets/images/logos/ps5-logo.png" alt="PlayStation 5">
-              </div>
-              <div class="platform-icon" title="Xbox">
-                <img src="assets/images/logos/xbox-logo.png" alt="Xbox">
-              </div>
-            </div>
-            <div class="platform-text">PLANNED PLATFORMS</div>
-          </div>
-        </div>
-          <div class="project-card">
-          <div class="project-header">
-            <h3 class="project-title">PROJECT:XI</h3>
-            <div class="project-year">2025</div>
-          </div>
-          
-          <div class="project-subtitle">TIME-DRIVEN ACTION PLATFORMER</div>
-          
-          <div class="project-details">
-            <div class="tech-stack">
-              <span class="tech-item">UNREAL ENGINE 5</span>
-              <span class="tech-item">BLUEPRINT</span>
-              <span class="tech-item">C++</span>
-            </div>
-            
-            <div class="project-status">
-              <div class="status-indicator">
-                <div class="status-dot pulsing"></div>
-                <span class="status-text">IN DEVELOPMENT</span>
-              </div>
-              <div class="progress-bar">
-                <div class="progress-fill" style="width: 55%"></div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="project-description">
-            A high-speed clockwork platformer where precision and timing define your survival.
-          </div>
-          
-          <div class="project-platforms">
-            <div class="platform-icons">
-              <div class="platform-icon" title="Android">
-                <img src="assets/images/logos/android-logo.png" alt="Android">
-              </div>
-            </div>
-            <div class="platform-text">PLANNED PLATFORMS</div>
-          </div>
-        </div>
-        <!-- Add more project cards here -->
-        
-      </div>
-      <div class="project-indicators"></div>
-    </div>
-  </div>
-</section>
-    <section id="contact">
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" aria-labelledby="portfolio-heading">
       <div>
-        <div class="section-title">CONTACT</div>
+        <h2 id="portfolio-heading" class="section-title">PORTFOLIO</h2>
         
-        <form class="contact-form" action="https://formspree.io/f/meokdyvr" method="POST" novalidate>
+        <div class="projects-container">
+          <div class="projects-slider" role="region" aria-label="Project showcase">
+            <!-- Project 1: EVANGEL -->
+            <article class="project-card" data-project="evangel">
+              <header class="project-header">
+                <h3 class="project-title">EVANGEL</h3>
+                <time class="project-year" datetime="2025">2025</time>
+              </header>
+              
+              <p class="project-subtitle">NARRATIVE-DRIVEN JRPG WITH HACK-AND-SLASH COMBAT</p>
+              
+              <div class="project-details">
+                <div class="tech-stack" role="list" aria-label="Technologies used">
+                  <span class="tech-item" role="listitem">UNREAL ENGINE 5</span>
+                  <span class="tech-item" role="listitem">BLUEPRINT</span>
+                  <span class="tech-item" role="listitem">C++</span>
+                </div>
+                
+                <div class="project-status">
+                  <div class="status-indicator" aria-live="polite">
+                    <div class="status-dot pulsing" aria-hidden="true"></div>
+                    <span class="status-text">IN DEVELOPMENT</span>
+                  </div>
+                  <div class="progress-bar" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" aria-label="Development progress: 10%">
+                    <div class="progress-fill" style="width: 10%"></div>
+                  </div>
+                </div>
+              </div>
+              
+              <p class="project-description">
+                A character-driven JRPG about searching for meaning in a world that forgets, 
+                where each choice quietly shifts the path ahead.
+              </p>
+              
+              <footer class="project-platforms">
+                <div class="platform-icons" role="list" aria-label="Planned platforms">
+                  <div class="platform-icon" role="listitem">
+                    <img src="assets/images/logos/steam-logo.png" 
+                         alt="Steam" 
+                         loading="lazy"
+                         width="32" 
+                         height="32">
+                  </div>
+                  <div class="platform-icon" role="listitem">
+                    <img src="assets/images/logos/epic-games-logo.png" 
+                         alt="Epic Games" 
+                         loading="lazy"
+                         width="32" 
+                         height="32">
+                  </div>
+                  <div class="platform-icon" role="listitem">
+                    <img src="assets/images/logos/ps5-logo.png" 
+                         alt="PlayStation 5" 
+                         loading="lazy"
+                         width="32" 
+                         height="32">
+                  </div>
+                  <div class="platform-icon" role="listitem">
+                    <img src="assets/images/logos/xbox-logo.png" 
+                         alt="Xbox" 
+                         loading="lazy"
+                         width="32" 
+                         height="32">
+                  </div>
+                </div>
+                <span class="platform-text">PLANNED PLATFORMS</span>
+              </footer>
+            </article>
+
+            <!-- Project 2: PROJECT:XI -->
+            <article class="project-card" data-project="project-xi">
+              <header class="project-header">
+                <h3 class="project-title">PROJECT:XI</h3>
+                <time class="project-year" datetime="2025">2025</time>
+              </header>
+              
+              <p class="project-subtitle">TIME-DRIVEN ACTION PLATFORMER</p>
+              
+              <div class="project-details">
+                <div class="tech-stack" role="list" aria-label="Technologies used">
+                  <span class="tech-item" role="listitem">UNREAL ENGINE 5</span>
+                  <span class="tech-item" role="listitem">BLUEPRINT</span>
+                  <span class="tech-item" role="listitem">C++</span>
+                </div>
+                
+                <div class="project-status">
+                  <div class="status-indicator" aria-live="polite">
+                    <div class="status-dot pulsing" aria-hidden="true"></div>
+                    <span class="status-text">IN DEVELOPMENT</span>
+                  </div>
+                  <div class="progress-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100" aria-label="Development progress: 55%">
+                    <div class="progress-fill" style="width: 55%"></div>
+                  </div>
+                </div>
+              </div>
+              
+              <p class="project-description">
+                A high-speed clockwork platformer where precision and timing define your survival.
+              </p>
+              
+              <footer class="project-platforms">
+                <div class="platform-icons" role="list" aria-label="Planned platforms">
+                  <div class="platform-icon" role="listitem">
+                    <img src="assets/images/logos/android-logo.png" 
+                         alt="Android" 
+                         loading="lazy"
+                         width="32" 
+                         height="32">
+                  </div>
+                </div>
+                <span class="platform-text">PLANNED PLATFORMS</span>
+              </footer>
+            </article>
+          </div>
+          
+          <!-- Project Navigation Indicators -->
+          <div class="project-indicators" role="tablist" aria-label="Project navigation"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" aria-labelledby="contact-heading">
+      <div>
+        <h2 id="contact-heading" class="section-title">CONTACT</h2>
+        
+        <form class="contact-form" 
+              action="https://formspree.io/f/meokdyvr" 
+              method="POST" 
+              novalidate
+              aria-label="Contact form">
+          
           <div class="input-group">
-            <input type="email" name="email" class="form-input" required autocomplete="email">
-            <label class="form-label">Your Email</label>
+            <input type="email" 
+                   name="email" 
+                   id="email-input"
+                   class="form-input" 
+                   required 
+                   autocomplete="email"
+                   aria-describedby="email-error">
+            <label for="email-input" class="form-label">Your Email</label>
+            <span id="email-error" class="error-message" aria-live="polite"></span>
           </div>
 
           <div class="message-group">
-            <textarea name="message" class="form-textarea" required></textarea>
-            <label class="form-label">Your Message</label>
+            <textarea name="message" 
+                      id="message-input"
+                      class="form-textarea" 
+                      required
+                      aria-describedby="message-error"></textarea>
+            <label for="message-input" class="form-label">Your Message</label>
+            <span id="message-error" class="error-message" aria-live="polite"></span>
           </div>
 
-          <button type="submit" class="submit-btn" disabled>SEND</button>
-          <div class="success-message">MESSAGE SENT SUCCESSFULLY</div>
+          <button type="submit" class="submit-btn" disabled aria-describedby="submit-status">
+            SEND
+          </button>
+          
+          <div id="submit-status" class="success-message" aria-live="polite">
+            MESSAGE SENT SUCCESSFULLY
+          </div>
         </form>
       </div>
     </section>
   </div>
 
+  <!-- Page Navigation -->
   <nav class="dot-nav" aria-label="Page navigation">
-    <a href="#home" class="active" aria-label="Home"></a>
-    <a href="#portfolio" aria-label="Portfolio"></a>
-    <a href="#contact" aria-label="Contact"></a>
+    <a href="#home" class="active" aria-label="Go to home section">
+      <span class="sr-only">Home</span>
+    </a>
+    <a href="#portfolio" aria-label="Go to portfolio section">
+      <span class="sr-only">Portfolio</span>
+    </a>
+    <a href="#contact" aria-label="Go to contact section">
+      <span class="sr-only">Contact</span>
+    </a>
   </nav>
 
+  <!-- Scripts -->
   <script src="assets/js/script.js"></script>
 </body>
 </html>
