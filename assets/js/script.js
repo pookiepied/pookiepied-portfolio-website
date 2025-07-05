@@ -166,13 +166,21 @@ document.addEventListener('DOMContentLoaded', function() {
   // PROJECT SLIDER
   const slider = document.querySelector('.projects-slider');
   const projects = document.querySelectorAll('.project-card');
+  const totalProjects = projects.length;
+
+  slider.style.width = `${totalProjects * 100}%`;
+
+  // NEW: Set each project card's flex basis so they fit exactly
+  projects.forEach(project => {
+    project.style.flex = `0 0 ${100 / totalProjects}%`;
+  });
+
   const indicatorsContainer = document.querySelector('.project-indicators');
   
   console.log('Slider elements:', { slider, projects: projects.length, indicatorsContainer });
   
-  if (slider && projects.length > 0) {
+  if (slider && totalProjects > 0) {
     let currentProject = 0;
-    const totalProjects = projects.length;
 
     // Initialize the first project as active immediately
     projects[0].classList.add('active');
@@ -259,7 +267,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function updateSlider() {
-      const offset = -currentProject * 100;
+      // MODIFIED offset calculation for correct sliding
+      const offset = -(currentProject * (100 / totalProjects));
       slider.style.transform = `translateX(${offset}%)`;
       
       // Update line indicators
