@@ -488,8 +488,11 @@ nav.dot-nav a.active {
   display: flex;
   transition: transform 0.5s ease;
   cursor: grab;
-  width: 100%;
+  width: 100%; /* will be overwritten dynamically */
+  box-sizing: border-box;
+  margin: 0;
 }
+
 
 .projects-slider:active {
   cursor: grabbing;
